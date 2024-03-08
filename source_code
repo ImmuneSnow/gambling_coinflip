@@ -1,0 +1,30 @@
+import random
+
+def coin_flip():
+    """Returns 'H' for heads or 'T' for tails."""
+    return 'H' if random.randint(0, 1) else 'T'
+
+def main():
+    credits = 100
+    while credits > 0:
+        try:
+            bet = int(input(f"You have {credits} credits. How many would you like to bet on the coin flip? "))
+        except ValueError:
+            print("Invalid input. Please enter an integer.")
+            continue
+        if bet > credits:
+            print("You can't bet more than you have.")
+            continue
+        guess = input("Enter 'H' for heads or 'T' for tails: ").upper()
+        flip = coin_flip()
+        if guess == flip:
+            print("You won!")
+            credits += bet
+        else:
+            print("You lost!")
+            credits -= bet
+        print(f"You now have {credits} credits.\n")
+    print("You've reached 0 or negative credits. Game over.")
+
+if __name__ == "__main__":
+    main()
